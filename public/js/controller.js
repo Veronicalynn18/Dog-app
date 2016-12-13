@@ -15,20 +15,22 @@
     data: {},
     url: url + '&callback=?',
     dataType: 'json',
-    success: function(data) {
+    success:function(data) {
+          $scope.data = data;
+          $scope.$apply();
+
       console.log(data.petfinder.pets);
-      petfinderData = data;
+      //petfinderData = data;
 
       for(var i=0; i<25;i++){
           var $inner = $("<div class='new'></div>");
-          $("#container").append($inner);
+        //  $("#container").append($inner);
 
               for (var h=2; h<5; h+=5){
-                $inner.append('<a class="example-image-link" href="' + data.petfinder.pets.pet[i].media.photos.photo[h].$t+'" data-lightbox="example-set" data-title="'+ data.petfinder.pets.pet[i].name.$t + ' '+"About: "+ data.petfinder.pets.pet[i].description.$t +'"><img class="example-image" src="'+ data.petfinder.pets.pet[i].media.photos.photo[h].$t+'" alt="" /></a>');
+                $inner.append('<a class="image-link" href="' + data.petfinder.pets.pet[i].media.photos.photo[h].$t+'" data-lightbox="esset" data-title="'+ data.petfinder.pets.pet[i].name.$t + ' '+"About: "+ data.petfinder.pets.pet[i].description.$t +'"><img class="example-image" src="'+ data.petfinder.pets.pet[i].media.photos.photo[h].$t+'" alt="" /></a>');
 
 
               };
-
 
           $inner.append('<div class="name">' + data.petfinder.pets.pet[i].name.$t + '</div>');
           $inner.append('<div class="animal">' + data.petfinder.pets.pet[i].animal.$t + '</div>');
